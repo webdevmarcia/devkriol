@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+
+/* ------------------------------ */
+/* VARIÁVEIS DE TEMA */
+/* ------------------------------ */
+
+:root {
+  --blue: #0f2c5f;
+  --red: rgb(248, 21, 21); 
+  --escuro:	#4682B4;
+  --claro: 	#87CEEB; 
+   --yellow: yellow; 
+  --white: white; 
+ 
+ 
+}
+
+p {
+  text-align: justify;
+}
+
+/* Dark mode */
+.dark {
+  --surface: #0d0f0c;
+  --primary: #bec6fb;
+  --on-primary: #1a1a1a;
+}
+
+/* ------------------------------ */
+/* ANIMAÇÕES */
+/* ------------------------------ */
+
+/* Slide do menu mobile */
+@keyframes slideLeft {
+  from { transform: translateX(100%) }
+  to { transform: translateX(0) }
+}
+
+.animate-slideLeft {
+  animation: slideLeft 0.35s ease-out forwards;
+}
+
+/* Fade in suave */
+@keyframes fadeIn {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 1.2s ease-out forwards;
+}
+
+/* Slide up suave */
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px) }
+  to { opacity: 1; transform: translateY(0) }
+}
+
+.animate-slideUp {
+  animation: slideUp 1.2s ease-out forwards;
+}
+
+/* Flutuação suave (imagem do hero) */
+@keyframes float {
+  0% { transform: translateY(0) }
+  50% { transform: translateY(-10px) }
+  100% { transform: translateY(0) }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* FadeUp para cards de projetos */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px) }
+  to { opacity: 1; transform: translateY(0) }
+}
+
+.animate-fadeUp {
+  animation: fadeUp 0.8s ease-out forwards;
+}
+
+
+#sobre {
+  border-radius: 1%;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url('/fundo.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  /* AQUI ESTÁ A OPACIDADE */
+  background-color: rgba(0, 0, 0, 0.1); 
+  background-blend-mode: darken;
+
+  z-index: -1;
+  pointer-events: none;
+}
+
