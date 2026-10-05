@@ -45,8 +45,12 @@ export default function Sobre() {
           transition={{ duration: 1.2, ease: 'easeOut' }}
           className="space-y-8"
         >
-          <h2 className="text-3xl font-bold tracking-tight text-white">
-            Sobre nós
+          <p className="text-sm font-medium uppercase tracking-[0.2em] text-[var(--blue)]">
+            Quem somos
+          </p>
+
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-white leading-tight">
+            Transformamos ideias em experiências digitais com impacto.
           </h2>
 
           <motion.p
@@ -56,7 +60,7 @@ export default function Sobre() {
             transition={{ delay: 0.25, duration: 1 }}
             className="text-l text-white/90 leading-relaxed"
           >
-            Fundada em 2025 por dois jovens caboverdianos, a DevKriol nasceu com a missão de criar oportunidades e inspirar mais jovens a ingressar no mundo tecnológico.
+            A <span className="font-semibold text-white">DevKriol</span> é uma agência digital criada para ajudar marcas a crescer com presença online forte, clara e funcional.
           </motion.p>
 
           <motion.p
@@ -66,7 +70,7 @@ export default function Sobre() {
             transition={{ delay: 0.4, duration: 1 }}
             className="text-l text-white/90 leading-relaxed"
           >
-            Trabalhamos com HTML, CSS, JavaScript, PHP, MySQL, entre outros, para desenvolver websites e aplicações completas — desde o design da interface até à lógica do servidor e gestão de base de dados.
+            Desenvolvemos soluções digitais completas, desde websites e plataformas até interfaces pensadas para melhorar a experiência do utilizador e fortalecer a identidade da marca.
           </motion.p>
 
           <motion.p
@@ -76,7 +80,7 @@ export default function Sobre() {
             transition={{ delay: 0.55, duration: 1 }}
             className="text-l text-white/90 leading-relaxed"
           >
-            Criamos soluções responsivas, rápidas e otimizadas, sempre com foco na experiência do utilizador e na identidade única de cada marca.
+            Combinamos design, tecnologia e estratégia para entregar experiências rápidas, responsivas e preparadas para o crescimento real dos negócios.
           </motion.p>
 
           {/* BOTÃO */}
@@ -97,7 +101,7 @@ export default function Sobre() {
                 shadow-xl shadow-black/20
               "
             >
-              Ver serviços
+              Conhecer serviços
             </motion.a>
           </motion.div>
         </motion.div>

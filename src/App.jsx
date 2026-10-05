@@ -12,7 +12,7 @@ import "./index.css";
 export default function App() {
   return (
     <BrowserRouter>
-      <div className="min-h-screen text-[var(--on-surface)] bg-[var(--surface)]">
+      <div className="min-h-screen text-[var(--white)]">
         <Header />
 
         <Routes>
@@ -24,7 +24,7 @@ export default function App() {
                 <Hero />
 
                 {/* CONTEÚDO PRINCIPAL */}
-                <main className="overflow-x-hidden max-w-7xl mx-auto px-6 py-20 space-y-32">
+                <main className="overflow-x-hidden mx-auto px-6 py-20 space-y-32">
                   <Sobre />
                   <Servicos />
                   <Portfolio />

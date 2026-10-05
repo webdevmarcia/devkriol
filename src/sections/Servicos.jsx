@@ -5,35 +5,35 @@ const services = [
     id: 1,
     title: "Desenvolvimento de Websites",
     description:
-      "Criamos websites modernos, rápidos e responsivos — desde páginas institucionais até plataformas completas, com foco em performance e experiência do utilizador.",
+      "Sites modernos, rápidos e responsivos que ajudam a sua marca a transmitir confiança e converter mais visitas em oportunidades.",
     icon: "💻",
   },
   {
     id: 2,
     title: "Design UI/UX",
     description:
-      "Desenhamos interfaces elegantes, intuitivas e alinhadas com a identidade de cada marca, garantindo clareza, estética e funcionalidade.",
+      "Interfaces claras, intuitivas e alinhadas à identidade da sua marca, com foco em experiência, usabilidade e resultados.",
     icon: "🎨",
   },
   {
     id: 3,
     title: "Lojas Online & E‑commerce",
     description:
-      "Desenvolvemos lojas online completas com gestão de produtos, pagamentos, carrinho e checkout, criando experiências de compra fluidas e profissionais.",
+      "Plataformas de venda pensadas para oferecer uma experiência de compra fluida, profissional e preparada para crescer com o negócio.",
     icon: "🛒",
   },
   {
     id: 4,
     title: "Branding & Identidade Visual",
     description:
-      "Criamos identidades visuais fortes e consistentes — logotipos, paletas de cores e elementos gráficos que reforçam a presença digital da marca.",
+      "Identidades visuais fortes, memoráveis e consistentes, criando uma presença digital que reforça a percepção da marca.",
     icon: "✨",
   },
   {
     id: 5,
     title: "Manutenção & Suporte",
     description:
-      "Acompanhamos o crescimento do seu projeto com atualizações, otimizações e melhorias contínuas, garantindo segurança e desempenho.",
+      "Acompanhamento contínuo para manter o seu projeto seguro, otimizado e sempre pronto para evoluir com o seu negócio.",
     icon: "🛠️",
   },
 ];
@@ -42,17 +42,27 @@ export default function Servicos() {
   return (
     <section id="servicos" className="py-20 px-6">
       <div className="max-w-7xl mx-auto text-center mb-16">
+        
+
         <motion.h2
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1 }}
-          className="text-4xl font-bold text-white"
+          className="text-4xl md:text-5xl font-bold text-white leading-tight"
         >
-          Serviços
+          Soluções que ajudam as marcas a crescer online.
         </motion.h2>
 
-       
+        <motion.p
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.15, duration: 0.9 }}
+          className="max-w-2xl mx-auto mt-6 text-white/80 text-lg leading-relaxed"
+        >
+          Criamos experiências digitais estratégicas, com design, funcionalidade e tecnologia para fortalecer a presença da sua marca e gerar resultados reais.
+        </motion.p>
       </div>
 
       {/* GRID */}

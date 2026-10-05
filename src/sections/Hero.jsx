@@ -46,7 +46,7 @@ export default function Hero() {
       "></div>
 
       {/* CONTEÚDO */}
-      <div className="relative max-w-4xl mx-auto text-center space-y-10">
+      <div className="relative max-w-3xl mx-auto text-center space-y-10">
 
         {/* TEXTO COM PARALLAX */}
         <motion.div
@@ -56,13 +56,14 @@ export default function Hero() {
           transition={{ duration: 1.2, ease: "easeOut" }}
           className="space-y-8"
         >
-          <h1 className="text-4xl md:text-7xl font-extrabold text-white tracking-tight leading-[1.1]">
-            Tecnologia e Inovação
+        
+          <h1 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight leading-[1.1]">
+            Presença digital que <span className="text-[var(--blue)]">impulsiona</span> marcas.
           </h1>
 
-          <h2 className="font-light text-2xl md:text-2xl text-[var(--white)] leading-relaxed">
-            Na <span className="font-semibold">DevKriol</span> criamos soluções digitais que
-            inspiram, conectam e transformam negócios.
+          <h2 className="font-light text-lg md:text-2xl text-[var(--white)] leading-relaxed max-w-2xl mx-auto">
+            Na <span className="font-semibold">DevKriol</span> criamos experiências digitais,
+            sites e soluções que conectam negócios ao crescimento real.
           </h2>
 
           {/* BOTÕES */}
@@ -78,7 +79,7 @@ export default function Hero() {
                 transition-all
               "
             >
-              Serviços
+              Ver serviços
             </motion.a>
 
             <motion.a
@@ -92,7 +93,7 @@ export default function Hero() {
                 transition-all
               "
             >
-              Entrar em contacto
+              Solicitar orçamento
             </motion.a>
           </div>
         </motion.div>
