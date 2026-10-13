@@ -49,7 +49,7 @@ export default function Sobre() {
             Quem somos
           </p>
 
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-white leading-tight">
+          <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-white leading-tight">
             Transformamos ideias em experiências digitais com impacto.
           </h2>
 
@@ -96,7 +96,7 @@ export default function Sobre() {
               whileTap={{ scale: 0.95 }}
               href="#servicos"
               className="
-                px-8 py-4 bg-white text-[var(--blue)] rounded-lg 
+                px-5 py-2 bg-white text-[var(--blue)] rounded-lg 
                 font-bold text-lg transition-all 
                 shadow-xl shadow-black/20
               "

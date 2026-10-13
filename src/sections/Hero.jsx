@@ -57,7 +57,7 @@ export default function Hero() {
           className="space-y-8"
         >
         
-          <h1 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight leading-[1.1]">
+          <h1 className="text-l md:text-3xl font-extrabold text-white tracking-tight leading-[1.1]">
             Presença digital que <span className="text-[var(--blue)]">impulsiona</span> marcas.
           </h1>
 
@@ -73,7 +73,7 @@ export default function Hero() {
               whileTap={{ scale: 0.95 }}
               href="#servicos"
               className="
-                px-8 py-3 rounded-full font-semibold text-l
+                px-5 py-2 rounded-full font-semibold text-l
                 bg-[var(--blue)] text-white
                 shadow-lg shadow-primary/30
                 transition-all
@@ -87,7 +87,7 @@ export default function Hero() {
               whileTap={{ scale: 0.95 }}
               href="#contatos"
               className="
-                px-8 py-3 rounded-full font-semibold text-l
+                px-5 py-2 rounded-full font-semibold text-l
                 bg-[var(--red)] text-white
                 shadow-lg shadow-primary/30
                 transition-all

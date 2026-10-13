@@ -28,7 +28,7 @@ export default function Portfolio() {
         <div className="text-center mb-14">
           
 
-          <h2 className="text-4xl md:text-5xl font-bold text-[var(--white)] leading-tight mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold text-[var(--white)] leading-tight mb-6">
             Soluções digitais com identidade, clareza e impacto.
           </h2>
 

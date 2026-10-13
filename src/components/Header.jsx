@@ -43,15 +43,15 @@ export default function Header() {
   return (
     <header className="
       flex items-center justify-between 
-      h-20 px-6 bg-white sticky top-0 z-50 w-full 
+      h-15 px-3 bg-white sticky top-0 z-50 w-full 
       shadow-md transition-colors
     ">
-      <div className="flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto">
+      <div className="flex justify-between items-center w-full px-6 py-4 max-w-4xl mx-auto">
         <a href="/" className="flex items-center gap-3" aria-label="Voltar para a página inicial">
           <img 
             src="logo.webp"
             alt="Logo"
-            className="w-30 h-30 object-contain"
+            className="w-25 h-25 object-contain"
           />
         </a>
 
@@ -63,12 +63,12 @@ export default function Header() {
           className="md:hidden flex flex-col gap-1.5 ml-2"
           onClick={toggleMenu}
         >
-          <span className="w-7 h-0.5 bg-[var(--blue)] rounded"></span>
-          <span className="w-7 h-0.5 bg-[var(--blue)] rounded"></span>
-          <span className="w-7 h-0.5 bg-[var(--blue)] rounded"></span>
+          <span className="w-4 h-0.3 bg-[var(--blue)] rounded"></span>
+          <span className="w-4 h-0.3 bg-[var(--blue)] rounded"></span>
+          <span className="w-4 h-0.3 bg-[var(--blue)] rounded"></span>
         </button>
 
-        <nav className="hidden md:flex items-center gap-8" aria-label="Navegação principal">
+        <nav className="hidden md:flex items-center gap-4" aria-label="Navegação principal">
           {navItems.map(({ label, to }) => (
             <HashLink
               key={to}
@@ -91,8 +91,8 @@ export default function Header() {
             id="mobile-menu"
             ref={menuRef}
             className="
-              w-72 h-full bg-white/95 backdrop-blur-xl shadow-xl 
-              p-8 flex flex-col gap-8 animate-slideLeft
+              w-34 h-full bg-white/95 backdrop-blur-xl shadow-xl 
+              p-3 flex flex-col gap-8 animate-slideLeft
             "
             onClick={(e) => e.stopPropagation()}
           >

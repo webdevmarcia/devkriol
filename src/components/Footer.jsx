@@ -7,7 +7,7 @@ export default function Footer() {
       {/* Glow suave */}
       <div className="absolute inset-0 bg-gradient-to-t from-primary/10 via-transparent to-transparent blur-3xl pointer-events-none"></div>
 
-      <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-16 relative z-10">
+      <div className="max-w-5xl mx-auto px-3 py-6 grid grid-cols-1 md:grid-cols-3 gap-16 relative z-10">
 
         {/* COLUNA 1 — IDENTIDADE */}
         <div className="space-y-4 animate-fadeUp">
@@ -26,7 +26,6 @@ export default function Footer() {
         {/* COLUNA 2 — CONTACTOS */}
         <div className="space-y-4 animate-fadeUp" style={{ animationDelay: "0.3s" }}>
           
-
           {/* ÍCONES */}
           <div className="flex gap-4 pt-4 text-[var(--blue)]">
 
@@ -84,19 +83,14 @@ export default function Footer() {
         </div>
 
         {/* COLUNA 3 — MENSAGEM FINAL */}
-        <div className="animate-fadeUp" style={{ animationDelay: "0.6s" }}>
-          <p className="text-black/70 leading-relaxed">
-            
-          </p>
-        </div>
+        
 
       </div>
 
       {/* COPYRIGHT */}
-      <div className="border-t border-black/10 py-6 text-center text-black/50 text-sm">
+      <div className="border-t border-black/10 py-3 text-center text-black/50 text-sm">
         © 2025 DevKriol — Todos os direitos reservados. <br/>
         Política de Privacidade | Termos de Serviço 
-        
       </div>
     </footer>
   );

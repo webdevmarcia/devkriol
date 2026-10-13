@@ -3,12 +3,12 @@ export default function ProjectCard({ titulo, descricao, imagem, link, delay = 0
     <div
       className="
         group 
-        rounded-2xl 
+        rounded-l 
         overflow-hidden 
         bg-[var(--surface)]/10 
         backdrop-blur-xl 
         border border-white/10 
-        shadow-xl 
+        shadow-l 
         hover:shadow-[0_0_35px_rgba(255,255,255,0.15)]
         transition-all 
         duration-500 
@@ -23,7 +23,7 @@ export default function ProjectCard({ titulo, descricao, imagem, link, delay = 0
           alt={titulo}
           className="
             w-full 
-            h-48 
+            h-32
             object-cover 
             transition-transform 
             duration-[1500ms] 
@@ -49,7 +49,7 @@ export default function ProjectCard({ titulo, descricao, imagem, link, delay = 0
 
       {/* CONTEÚDO */}
       <div className="p-6 space-y-3">
-        <h3 className="text-2xl font-semibold text-white group-hover:text-[var(--primary)] transition-colors">
+        <h3 className="text-l font-semibold text-white group-hover:text-[var(--primary)] transition-colors">
           {titulo}
         </h3>
 

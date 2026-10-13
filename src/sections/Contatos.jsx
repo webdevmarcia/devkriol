@@ -64,7 +64,7 @@ export default function Contatos() {
             Vamos conversar
           </p>
 
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-[var(--white)] leading-tight">
+          <h2 className="text-3xl md:text-3xl font-bold tracking-tight text-[var(--white)] leading-tight">
             Fale com a DevKriol sobre o seu próximo projeto.
           </h2>
         </motion.div>
@@ -92,17 +92,7 @@ export default function Contatos() {
             border border-white/20 shadow-[0_30px_80px_rgba(0,0,0,0.35)] text-lg
           "
         >
-          <div className="flex flex-col justify-between rounded-2xl bg-gradient-to-br from-[var(--blue)]/20 via-white/5 to-transparent p-6 border border-white/10 text-left">
-            <div>
-             
-              <h3 className="text-2xl font-semibold text-white mb-4">
-                Vamos criar algo que destaque o seu negócio.
-              </h3>
-              
-            </div>
-
-            
-          </div>
+          
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Nome */}
@@ -158,7 +148,7 @@ export default function Contatos() {
               <button
                 type="submit"
                 className="
-                  w-full md:w-auto px-10 py-4 bg-[var(--blue)] text-white font-bold rounded-full text-lg 
+                  w-full md:w-auto px-5 py-2 bg-[var(--blue)] text-white font-bold rounded-full text-lg 
                   shadow-[0_16px_40px_rgba(71,120,255,0.45)] hover:scale-[1.02] active:scale-95 transition-all
                 "
               >

@@ -49,7 +49,7 @@ export default function Servicos() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1 }}
-          className="text-4xl md:text-5xl font-bold text-white leading-tight"
+          className="text-2xl md:text-3xl font-bold text-white leading-tight"
         >
           Soluções que ajudam as marcas a crescer online.
         </motion.h2>
