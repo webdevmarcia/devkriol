@@ -13,7 +13,7 @@ export default function Footer() {
         <div className="space-y-4 animate-fadeUp">
           <a href="/" className="flex items-center gap-3">
             <img 
-              src="logo.webp" 
+              src="/logo.webp" 
               alt="Logo" 
               className="w-30 h-30 object-contain"
             />
@@ -33,6 +33,7 @@ export default function Footer() {
             <a
               href="https://wa.me/351932663895"
               target="_blank"
+              rel="noopener noreferrer"
               className="hover:scale-110 transition-transform"
               aria-label="WhatsApp"
             >
@@ -45,6 +46,7 @@ export default function Footer() {
             <a
               href="https://github.com/webdevmarcia"
               target="_blank"
+              rel="noopener noreferrer"
               className="hover:scale-110 transition-transform"
               aria-label="GitHub"
             >
@@ -57,6 +59,7 @@ export default function Footer() {
             <a
               href="https://www.linkedin.com/in/webdevmarcia"
               target="_blank"
+              rel="noopener noreferrer"
               className="hover:scale-110 transition-transform"
               aria-label="LinkedIn"
             >
@@ -69,6 +72,7 @@ export default function Footer() {
             <a
               href="https://instagram.com/webdev_marcia"
               target="_blank"
+              rel="noopener noreferrer"
               className="hover:scale-110 transition-transform"
               aria-label="Instagram"
             >
@@ -82,14 +86,23 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* COLUNA 3 — MENSAGEM FINAL */}
-        
+        {/* COLUNA 3 — NAVEGAÇÃO */}
+        <nav className="space-y-2 animate-fadeUp" style={{ animationDelay: "0.5s" }} aria-label="Rodapé">
+          <p className="font-semibold text-[var(--blue)]">Explorar</p>
+          <ul className="grid grid-cols-2 gap-2 text-black/70">
+            <li><a href="#sobre" className="hover:text-[var(--red)] transition">Sobre</a></li>
+            <li><a href="#servicos" className="hover:text-[var(--red)] transition">Serviços</a></li>
+            <li><a href="#processo" className="hover:text-[var(--red)] transition">Processo</a></li>
+            <li><a href="#portfolio" className="hover:text-[var(--red)] transition">Portfólio</a></li>
+            <li><a href="#contatos" className="hover:text-[var(--red)] transition">Contactos</a></li>
+          </ul>
+        </nav>
 
       </div>
 
       {/* COPYRIGHT */}
       <div className="border-t border-black/10 py-3 text-center text-black/50 text-sm">
-        © 2025 DevKriol — Todos os direitos reservados. <br/>
+        © {new Date().getFullYear()} DevKriol — Todos os direitos reservados. <br/>
         Política de Privacidade | Termos de Serviço 
       </div>
     </footer>

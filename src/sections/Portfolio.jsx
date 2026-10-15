@@ -1,77 +1,91 @@
-import React from "react";
-
-const projects = [
-  {
-    id: 1,
-    name: "Explicações com a Márcia",
-    description:
-      "Website moderno e responsivo pensado para destacar os serviços e facilitar a descoberta da marca.",
-    image: "/projetos/explicacoes.png",
-    url: "https://explicacoescomamarcia.pt",
-    tag: "Website institucional",
-  },
-  {
-    id: 2,
-    name: "Kinotxema",
-    description:
-      "Presença digital para uma loja de moda com identidade visual forte e experiência de navegação clara.",
-    image: "/logotipo.webp",
-    url: "https://kinotxema.vercel.app",
-    tag: "Brand + digital",
-  },
-];
+import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import ProjectCard from "../components/ProjectCard";
+import projetosData, { categorias } from "../data/projetosData";
 
 export default function Portfolio() {
-  return (
-    <section id="portfolio" className="py-20">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-14">
-          
+  const [filtro, setFiltro] = useState("Todos");
 
-          <h2 className="text-2xl md:text-3xl font-bold text-[var(--white)] leading-tight mb-6">
+  const projetos =
+    filtro === "Todos" ? projetosData : projetosData.filter((p) => p.categoria === filtro);
+
+  return (
+    <section id="portfolio" className="py-20 scroll-mt-24">
+      <div className="max-w-7xl mx-auto px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.9 }}
+          className="text-center mb-12"
+        >
+          <p className="text-sm font-medium uppercase tracking-[0.2em] text-[var(--claro)] mb-4">
+            Portfólio
+          </p>
+
+          <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight mb-6">
             Soluções digitais com identidade, clareza e impacto.
           </h2>
 
-          <p className="max-w-3xl mx-auto text-white/80 text-lg leading-relaxed">
-            Selecionamos projetos que refletem a forma como criamos experiências digitais pensadas para fortalecer marcas, melhorar a presença online e transformar a comunicação em resultados.
+          <p className="max-w-3xl mx-auto text-white/80 text-lg leading-relaxed text-center">
+            Uma seleção de projetos que refletem a forma como criamos experiências digitais para
+            fortalecer marcas, melhorar a presença online e transformar a comunicação em resultados.
           </p>
+        </motion.div>
+
+        {/* FILTROS */}
+        <div className="flex flex-wrap justify-center gap-3 mb-12" role="tablist" aria-label="Filtrar projetos">
+          {categorias.map((cat) => {
+            const ativo = filtro === cat;
+            return (
+              <button
+                key={cat}
+                type="button"
+                role="tab"
+                aria-selected={ativo}
+                onClick={() => setFiltro(cat)}
+                className={`relative px-5 py-2 rounded-full text-sm font-semibold transition-colors ${
+                  ativo ? "text-[var(--blue)]" : "text-white/80 hover:text-white bg-white/5 border border-white/15"
+                }`}
+              >
+                {ativo && (
+                  <motion.span
+                    layoutId="filtro-ativo"
+                    className="absolute inset-0 rounded-full bg-white"
+                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                  />
+                )}
+                <span className="relative z-10">{cat}</span>
+              </button>
+            );
+          })}
         </div>
 
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-10">
-          {projects.map((project) => (
-            <div
-              key={project.id}
-              className="bg-[var(--blue)] rounded-xl shadow-lg overflow-hidden 
-                         hover:scale-[1.03] hover:shadow-2xl transition-all duration-300 
-                         text-[var(--white)]"
-            >
-              <img
-                src={project.image}
-                alt={project.name}
-                className="w-full h-56 object-cover"
-              />
+        {/* GRELHA */}
+        <motion.div layout className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <AnimatePresence mode="popLayout">
+            {projetos.map((projeto, index) => (
+              <ProjectCard key={projeto.id} projeto={projeto} index={index} />
+            ))}
+          </AnimatePresence>
+        </motion.div>
 
-              <div className="p-6">
-                <span className="inline-block mb-3 px-3 py-1 rounded-full bg-white/10 text-xs uppercase tracking-[0.15em] text-white/80">
-                  {project.tag}
-                </span>
-
-                <h3 className="text-2xl font-semibold mb-2">{project.name}</h3>
-                <p className="opacity-90 leading-relaxed">{project.description}</p>
-
-                <a
-                  href={project.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block mt-4 px-5 py-2 bg-white text-[var(--blue)] 
-                             font-semibold rounded-lg hover:bg-gray-200 transition"
-                >
-                  Ver projeto
-                </a>
-              </div>
-            </div>
-          ))}
-        </div>
+        {/* CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="mt-16 text-center"
+        >
+          <p className="text-white/80 mb-5 text-center">O próximo projeto do portfólio pode ser o seu.</p>
+          <a
+            href="#contatos"
+            className="inline-block px-7 py-3 rounded-full bg-[var(--red)] text-white font-semibold shadow-lg hover:scale-105 active:scale-95 transition-transform"
+          >
+            Vamos falar sobre a sua ideia
+          </a>
+        </motion.div>
       </div>
     </section>
   );

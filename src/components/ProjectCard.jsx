@@ -1,84 +1,92 @@
-export default function ProjectCard({ titulo, descricao, imagem, link, delay = 0 }) {
+import { motion } from "framer-motion";
+
+export default function ProjectCard({ projeto, index = 0 }) {
+  const { titulo, descricao, imagem, link, categoria, tags = [], destaque, novo } = projeto;
+  const publicado = Boolean(link);
+
   return (
-    <div
-      className="
-        group 
-        rounded-l 
-        overflow-hidden 
-        bg-[var(--surface)]/10 
-        backdrop-blur-xl 
-        border border-white/10 
-        shadow-l 
-        hover:shadow-[0_0_35px_rgba(255,255,255,0.15)]
-        transition-all 
-        duration-500 
-        animate-fadeUp
-      "
-      style={{ animationDelay: `${delay}s` }}
+    <motion.article
+      layout
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.95 }}
+      transition={{ duration: 0.5, delay: index * 0.08, ease: "easeOut" }}
+      whileHover={{ y: -8 }}
+      className={`
+        group relative flex flex-col overflow-hidden rounded-2xl
+        bg-white/10 backdrop-blur-xl border border-white/15
+        shadow-xl hover:shadow-[0_25px_60px_rgba(15,44,95,0.45)]
+        hover:border-white/40 transition-[box-shadow,border-color] duration-500
+        ${destaque ? "md:col-span-2 md:flex-row" : ""}
+      `}
     >
       {/* IMAGEM */}
-      <div className="relative overflow-hidden">
+      <div className={`relative overflow-hidden ${destaque ? "md:w-3/5 h-60 md:h-auto" : "h-52"}`}>
         <img
           src={imagem}
-          alt={titulo}
-          className="
-            w-full 
-            h-32
-            object-cover 
-            transition-transform 
-            duration-[1500ms] 
-            group-hover:scale-110
-          "
+          alt={`Pré-visualização do projeto ${titulo}`}
+          loading="lazy"
+          className="w-full h-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-110"
         />
+        <div className="absolute inset-0 bg-gradient-to-t from-[var(--blue)]/80 via-transparent to-transparent opacity-60 group-hover:opacity-90 transition-opacity duration-500" />
 
-        {/* Overlay suave */}
-        <div
-          className="
-            absolute inset-0 
-            bg-gradient-to-t 
-            from-black/40 
-            via-black/10 
-            to-transparent 
-            opacity-0 
-            group-hover:opacity-100 
-            transition-all 
-            duration-700
-          "
-        ></div>
+        <div className="absolute top-4 left-4 flex gap-2">
+          <span className="px-3 py-1 rounded-full bg-white/90 text-[var(--blue)] text-xs font-semibold uppercase tracking-wider">
+            {categoria}
+          </span>
+          {novo && (
+            <span className="px-3 py-1 rounded-full bg-[var(--red)] text-white text-xs font-semibold uppercase tracking-wider animate-pulse">
+              Novo
+            </span>
+          )}
+        </div>
       </div>
 
       {/* CONTEÚDO */}
-      <div className="p-6 space-y-3">
-        <h3 className="text-l font-semibold text-white group-hover:text-[var(--primary)] transition-colors">
+      <div className={`flex flex-col flex-1 p-6 ${destaque ? "md:p-10 md:justify-center" : ""}`}>
+        {destaque && (
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--claro)] mb-3">
+            Projeto em destaque
+          </p>
+        )}
+
+        <h3 className={`font-bold text-white mb-3 ${destaque ? "text-2xl md:text-3xl" : "text-xl"}`}>
           {titulo}
         </h3>
 
-        <p className="text-white/70 text-sm leading-relaxed">
-          {descricao}
-        </p>
+        <p className="text-white/75 text-sm leading-relaxed text-left mb-5">{descricao}</p>
 
-        <a
-          href={link}
-          target="_blank"
-          className="
-            inline-block 
-            mt-4 
-            px-5 
-            py-2.5 
-            rounded-lg 
-            bg-[var(--blue)] 
-            text-white
-            font-semibold 
-            hover:scale-[1.03] 
-            active:scale-95 
-            transition-all 
-            shadow-lg 
-            shadow-primary/20
-          "
-        >
-          Ver projeto
-        </a>
+        <ul className="flex flex-wrap gap-2 mb-6">
+          {tags.map((tag) => (
+            <li key={tag} className="px-2.5 py-1 rounded-md bg-white/10 border border-white/10 text-xs text-white/80">
+              {tag}
+            </li>
+          ))}
+        </ul>
+
+        <div className="mt-auto">
+          {publicado ? (
+            <a
+              href={link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="
+                inline-flex items-center gap-2 px-5 py-2.5 rounded-full
+                bg-white text-[var(--blue)] font-semibold text-sm
+                hover:bg-[var(--yellow)] transition-colors shadow-lg
+              "
+            >
+              Ver projeto
+              <span className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-0.5">↗</span>
+            </a>
+          ) : (
+            <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/30 text-white/80 text-sm font-semibold">
+              <span className="w-2 h-2 rounded-full bg-[var(--yellow)] animate-pulse" />
+              Brevemente online
+            </span>
+          )}
+        </div>
       </div>
-    </div>
+    </motion.article>
   );
 }

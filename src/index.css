@@ -16,8 +16,31 @@
  
 }
 
-p {
-  text-align: justify;
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Montserrat", system-ui, sans-serif;
+}
+
+section[id] {
+  scroll-margin-top: 5rem;
+}
+
+::selection {
+  background: var(--escuro);
+  color: white;
+}
+
+/* Respeita quem prefere menos animação */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* Dark mode */

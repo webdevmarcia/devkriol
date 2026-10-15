@@ -1,16 +1,45 @@
 import { useState, useRef, useEffect } from "react";
 import { HashLink } from "react-router-hash-link";
+import { motion, useScroll, useSpring } from "framer-motion";
 
 const navItems = [
   { label: "Sobre", to: "/#sobre" },
   { label: "Serviços", to: "/#servicos" },
+  { label: "Processo", to: "/#processo" },
   { label: "Portfólio", to: "/#portfolio" },
   { label: "Contatos", to: "/#contatos" },
 ];
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [ativo, setAtivo] = useState("");
   const menuRef = useRef(null);
+
+  // Barra de progresso de leitura
+  const { scrollYProgress } = useScroll();
+  const progresso = useSpring(scrollYProgress, { stiffness: 120, damping: 30 });
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    // Destaca no menu a secção visível
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach((e) => e.isIntersecting && setAtivo(`/#${e.target.id}`)),
+      { rootMargin: "-45% 0px -50% 0px" }
+    );
+    navItems.forEach(({ to }) => {
+      const el = document.getElementById(to.slice(2));
+      if (el) observer.observe(el);
+    });
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      observer.disconnect();
+    };
+  }, []);
 
   useEffect(() => {
     if (!isMenuOpen) return;
@@ -41,15 +70,20 @@ export default function Header() {
   const toggleMenu = () => setIsMenuOpen((prev) => !prev);
 
   return (
-    <header className="
+    <header className={`
       flex items-center justify-between 
-      h-15 px-3 bg-white sticky top-0 z-50 w-full 
-      shadow-md transition-colors
-    ">
-      <div className="flex justify-between items-center w-full px-6 py-4 max-w-4xl mx-auto">
+      px-3 sticky top-0 z-50 w-full 
+      transition-all duration-300
+      ${scrolled ? "h-14 bg-white/90 backdrop-blur-md shadow-lg" : "h-15 bg-white shadow-md"}
+    `}>
+      <motion.div
+        style={{ scaleX: progresso }}
+        className="absolute bottom-0 left-0 right-0 h-0.5 origin-left bg-gradient-to-r from-[var(--blue)] via-[var(--escuro)] to-[var(--red)]"
+      />
+      <div className="flex justify-between items-center w-full px-6 py-4 max-w-5xl mx-auto">
         <a href="/" className="flex items-center gap-3" aria-label="Voltar para a página inicial">
           <img 
-            src="logo.webp"
+            src="/logo.webp"
             alt="Logo"
             className="w-25 h-25 object-contain"
           />
@@ -68,17 +102,33 @@ export default function Header() {
           <span className="w-4 h-0.3 bg-[var(--blue)] rounded"></span>
         </button>
 
-        <nav className="hidden md:flex items-center gap-4" aria-label="Navegação principal">
+        <nav className="hidden md:flex items-center gap-6" aria-label="Navegação principal">
           {navItems.map(({ label, to }) => (
             <HashLink
               key={to}
               smooth
               to={to}
-              className="text-[var(--blue)] hover:text-[var(--red)] transition"
+              aria-current={ativo === to ? "true" : undefined}
+              className={`relative py-1 font-medium transition hover:text-[var(--red)] ${
+                ativo === to ? "text-[var(--red)]" : "text-[var(--blue)]"
+              }`}
             >
               {label}
+              {ativo === to && (
+                <motion.span
+                  layoutId="nav-ativo"
+                  className="absolute -bottom-0.5 left-0 right-0 h-0.5 rounded-full bg-[var(--red)]"
+                />
+              )}
             </HashLink>
           ))}
+          <HashLink
+            smooth
+            to="/#contatos"
+            className="ml-2 px-4 py-1.5 rounded-full bg-[var(--blue)] text-white text-sm font-semibold hover:bg-[var(--red)] transition-colors"
+          >
+            Orçamento
+          </HashLink>
         </nav>
       </div>
 
