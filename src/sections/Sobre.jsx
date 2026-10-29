@@ -1,129 +1,78 @@
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
+
+const destaques = [
+  { valor: "3+", texto: "Projetos publicados" },
+  { valor: "Front & Back", texto: "Do design à base de dados" },
+  { valor: "PT · CV", texto: "Entre Portugal e Cabo Verde" },
+];
+
+const paragrafos = [
+  "Sou a Márcia Dias Costa, web developer a viver na Margem Sul, em Portugal, com raízes em Cabo Verde. Apaixonei-me pela tecnologia ao perceber que um website bem feito pode dar voz a uma ideia, a um negócio ou a uma comunidade.",
+  "Trabalho com HTML, CSS, JavaScript, React e Tailwind no front-end, e com PHP e MySQL no back-end — desde o desenho da interface até à lógica do servidor e à gestão de dados.",
+  "Para além de programar, dou explicações e gosto de partilhar conhecimento. Acredito que a tecnologia deve ser acessível, e quero inspirar mais jovens, sobretudo mulheres, a entrar neste mundo.",
+];
 
 export default function Sobre() {
-  const ref = useRef(null);
-
-  // PARALLAX DO SCROLL
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "center start"],
-  });
-
-  const yText = useTransform(scrollYProgress, [0, 1], ["0%", "-8%"]);
-  const opacityText = useTransform(scrollYProgress, [0, 1], [1, 0.7]);
-
   return (
-    <section
-      id="sobre"
-      ref={ref}
-      className="
-        relative w-full py-20 px-6 overflow-hidden
-        bg-white/10 backdrop-blur-xl
-        border border-white/20
-        shadow-2xl rounded-3xl
-      "
-    >
-      {/* Glow cinematográfico */}
-      <motion.div
-        style={{ y: yText }}
-        className="
-          absolute inset-0 
-          bg-gradient-to-b from-transparent via-white/10 to-transparent 
-          blur-3xl pointer-events-none
-        "
-      />
-
-      <div className="max-w-6xl mx-auto px-10 grid lg:grid-cols-2 gap-20 items-center relative z-10">
-
-        {/* --- TEXTO COM ANIMAÇÃO + PARALLAX --- */}
-        <motion.div
-          style={{ y: yText, opacity: opacityText }}
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.2, ease: 'easeOut' }}
-          className="space-y-8"
-        >
-          <p className="text-sm font-medium uppercase tracking-[0.2em] text-[var(--blue)]">
-            Quem somos
-          </p>
-
-          <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-white leading-tight">
-            Transformamos ideias em experiências digitais com impacto.
-          </h2>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.25, duration: 1 }}
-            className="text-l text-white/90 leading-relaxed"
-          >
-            A <span className="font-semibold text-white">DevKriol</span> é uma agência digital criada para ajudar marcas a crescer com presença online forte, clara e funcional.
-          </motion.p>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4, duration: 1 }}
-            className="text-l text-white/90 leading-relaxed"
-          >
-            Desenvolvemos soluções digitais completas, desde websites e plataformas até interfaces pensadas para melhorar a experiência do utilizador e fortalecer a identidade da marca.
-          </motion.p>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.55, duration: 1 }}
-            className="text-l text-white/90 leading-relaxed"
-          >
-            Combinamos design, tecnologia e estratégia para entregar experiências rápidas, responsivas e preparadas para o crescimento real dos negócios.
-          </motion.p>
-
-          {/* BOTÃO */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.7, duration: 1 }}
-            className="pt-4"
-          >
-            <motion.a
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              href="#servicos"
-              className="
-                px-5 py-2 bg-white text-[var(--blue)] rounded-lg 
-                font-bold text-lg transition-all 
-                shadow-xl shadow-black/20
-              "
-            >
-              Conhecer serviços
-            </motion.a>
-          </motion.div>
-        </motion.div>
-
-        {/* --- IMAGEM AO LADO --- */}
+    <section id="sobre" className="scroll-mt-24">
+      <div className="grid lg:grid-cols-[1fr_2fr] gap-12 lg:gap-20 items-center">
+        {/* MONOGRAMA */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 1.2, ease: 'easeOut' }}
-          className="w-full"
+          transition={{ duration: 1, ease: "easeOut" }}
+          className="mx-auto w-56 h-56 sm:w-72 sm:h-72 rounded-full p-1 bg-gradient-to-br from-[var(--accent)] to-[var(--primary-container)] shadow-2xl shadow-[var(--accent)]/20"
         >
-          <img
-            src="/man.jpg"
-            alt="Websites criados"
-            className="
-              w-full h-auto rounded-2xl shadow-2xl object-cover
-              border border-white/20
-            "
-          />
+          <div className="w-full h-full rounded-full bg-[var(--surface-container)] flex items-center justify-center">
+            <span className="text-6xl sm:text-7xl font-extrabold tracking-tight text-white">
+              M<span className="text-[var(--accent)]">D</span>C
+            </span>
+          </div>
         </motion.div>
 
+        {/* TEXTO */}
+        <div className="space-y-6">
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-3xl sm:text-4xl font-bold tracking-tight text-white"
+          >
+            Sobre mim
+          </motion.h2>
+
+          {paragrafos.map((texto, index) => (
+            <motion.p
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.15 + index * 0.15, duration: 0.8 }}
+              className="text-lg text-white/85 leading-relaxed"
+            >
+              {texto}
+            </motion.p>
+          ))}
+
+          {/* DESTAQUES */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
+            {destaques.map((item, index) => (
+              <motion.div
+                key={item.texto}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.5 + index * 0.12, duration: 0.8 }}
+                className="rounded-2xl p-5 bg-white/5 border border-white/10"
+              >
+                <div className="text-xl font-bold text-[var(--accent)]">{item.valor}</div>
+                <div className="text-sm text-white/70 mt-1">{item.texto}</div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

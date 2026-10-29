@@ -24,62 +24,59 @@ export default function Contatos() {
 
     const text =
       `Olá Márcia!%0A%0A` +
-      `Quero falar sobre o meu projeto.%0A%0A` +
-      `Dados do cliente:%0A` +
+      `Esses são os meus dados:%0A` +
       `Nome: ${name}%0A` +
       `Telemóvel: ${phone}%0A` +
-      `Email: ${email}%0A%0A` +
-      `Descrição do projeto:%0A${message}`;
+      `Email: ${email}%0A` +
+      `Descrição: ${message}`;
 
-    window.open(`https://wa.me/351932663895?text=${text}`, "_blank");
+    const whatsappNumber = "351932663895";
+
+    window.open(`https://wa.me/${whatsappNumber}?text=${text}`, "_blank");
   }
 
   return (
     <section
-      id="contatos"
+      id="contactos"
       ref={ref}
       className="
-        relative w-full py-32 px-6 overflow-hidden
-        bg-white/20 backdrop-blur-xl
-        border border-white/30
+        relative w-full py-24 px-6 overflow-hidden scroll-mt-24
+        bg-white/10 backdrop-blur-xl
+        border border-white/20
         shadow-2xl rounded-3xl
       "
     >
       {/* Glow cinematográfico */}
       <motion.div
         style={{ y: yGlow, opacity: opacityGlow }}
-        className="absolute inset-0 bg-gradient-to-b from-white/10 via-transparent to-black/20 blur-3xl pointer-events-none"
+        className="absolute inset-0 bg-gradient-to-b from-white/10 via-transparent to-black/30 blur-3xl pointer-events-none"
       />
 
-      <div className="max-w-5xl mx-auto px-6 text-center space-y-12 relative z-10">
+      <div className="max-w-4xl mx-auto px-4 text-center space-y-10 relative z-10">
+
         {/* TÍTULO */}
-        <motion.div
+        <motion.h2
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1 }}
-          className="space-y-5"
+          className="text-3xl sm:text-4xl font-bold tracking-tight text-white"
         >
-          <p className="text-sm font-medium uppercase tracking-[0.2em] text-[var(--blue)]">
-            Vamos conversar
-          </p>
-
-          <h2 className="text-3xl md:text-3xl font-bold tracking-tight text-[var(--white)] leading-tight">
-            Fale com a DevKriol sobre o seu próximo projeto.
-          </h2>
-        </motion.div>
+          Vamos trabalhar juntas?
+        </motion.h2>
 
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1, delay: 0.2 }}
-          className="max-w-3xl text-lg text-white/90 mx-auto leading-relaxed"
+          className="text-base sm:text-lg text-white/90 leading-relaxed max-w-2xl mx-auto"
         >
-          Quer fortalecer a sua presença digital, melhorar a imagem da sua marca ou criar uma solução que ajude o seu negócio a crescer? Estou aqui para ajudar a transformar a sua ideia em algo profissional, funcional e com impacto real.
+          Tem um projeto em mente ou quer dar presença online ao seu negócio?
+          Envie-me uma mensagem — respondo pelo WhatsApp o mais rápido possível.
         </motion.p>
 
-        {/* FORMULÁRIO PREMIUM */}
+        {/* FORMULÁRIO PREMIUM — MOBILE FIRST */}
         <motion.form
           onSubmit={sendToWhatsApp}
           initial={{ opacity: 0, y: 40 }}
@@ -87,75 +84,69 @@ export default function Contatos() {
           viewport={{ once: true }}
           transition={{ duration: 1, delay: 0.3 }}
           className="
-            mt-20 grid grid-cols-1 md:grid-cols-[0.9fr_1.4fr] gap-8 
-            bg-white/5 backdrop-blur-2xl p-6 md:p-8 lg:p-10 rounded-[28px] 
-            border border-white/20 shadow-[0_30px_80px_rgba(0,0,0,0.35)] text-lg
+            mt-14 flex flex-col gap-6
+            bg-white/10 backdrop-blur-xl p-8 sm:p-10 rounded-3xl
+            border border-white/20 shadow-xl
           "
         >
-          
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Nome */}
-            <div className="flex flex-col text-left md:col-span-1">
-              <label className="text-[var(--white)] font-semibold mb-2">Nome</label>
-              <input
-                type="text"
-                name="name"
-                placeholder="O seu nome"
-                required
-                className="px-4 py-3.5 rounded-xl bg-white/8 text-white placeholder-white/50 border border-white/20 focus:border-[var(--blue)] focus:bg-white/10 outline-none transition shadow-inner shadow-black/10"
-              />
-            </div>
-
-            {/* Telemóvel */}
-            <div className="flex flex-col text-left md:col-span-1">
-              <label className="text-[var(--white)] font-semibold mb-2">Telemóvel</label>
-              <input
-                type="text"
-                name="phone"
-                placeholder="O seu contacto"
-                required
-                className="px-4 py-3.5 rounded-xl bg-white/8 text-white placeholder-white/50 border border-white/20 focus:border-[var(--blue)] focus:bg-white/10 outline-none transition shadow-inner shadow-black/10"
-              />
-            </div>
-
-            {/* Email */}
-            <div className="flex flex-col text-left md:col-span-2">
-              <label className="text-[var(--white)] font-semibold mb-2">Email</label>
-              <input
-                type="email"
-                name="email"
-                placeholder="O seu email"
-                required
-                className="px-4 py-3.5 rounded-xl bg-white/8 text-white placeholder-white/50 border border-white/20 focus:border-[var(--blue)] focus:bg-white/10 outline-none transition shadow-inner shadow-black/10"
-              />
-            </div>
-
-            {/* Mensagem */}
-            <div className="flex flex-col text-left md:col-span-2">
-              <label className="text-[var(--white)] font-semibold mb-2">Descrição do projeto</label>
-              <textarea
-                name="message"
-                rows="5"
-                placeholder="Descreva o tipo de projeto que tem em mente..."
-                required
-                className="px-4 py-3.5 rounded-xl bg-white/8 text-white placeholder-white/50 border border-white/20 focus:border-[var(--blue)] focus:bg-white/10 outline-none transition resize-none shadow-inner shadow-black/10"
-              ></textarea>
-            </div>
-
-            {/* Botão Enviar */}
-            <div className="md:col-span-2 flex justify-center pt-2">
-              <button
-                type="submit"
-                className="
-                  w-full md:w-auto px-5 py-2 bg-[var(--blue)] text-white font-bold rounded-full text-lg 
-                  shadow-[0_16px_40px_rgba(71,120,255,0.45)] hover:scale-[1.02] active:scale-95 transition-all
-                "
-              >
-                Solicitar orçamento
-              </button>
-            </div>
+          {/* Nome */}
+          <div className="flex flex-col text-left">
+            <label className="text-white font-semibold mb-2">Nome</label>
+            <input
+              type="text"
+              name="name"
+              placeholder="O seu nome"
+              required
+              className="px-4 py-3 rounded-xl bg-white/20 text-white placeholder-white/60 border border-white/30 focus:border-[var(--accent)] outline-none transition"
+            />
           </div>
+
+          {/* Telemóvel */}
+          <div className="flex flex-col text-left">
+            <label className="text-white font-semibold mb-2">Telemóvel</label>
+            <input
+              type="text"
+              name="phone"
+              placeholder="O seu contacto telefónico"
+              required
+              className="px-4 py-3 rounded-xl bg-white/20 text-white placeholder-white/60 border border-white/30 focus:border-[var(--accent)] outline-none transition"
+            />
+          </div>
+
+          {/* Email */}
+          <div className="flex flex-col text-left">
+            <label className="text-white font-semibold mb-2">Email</label>
+            <input
+              type="email"
+              name="email"
+              placeholder="O seu email"
+              required
+              className="px-4 py-3 rounded-xl bg-white/20 text-white placeholder-white/60 border border-white/30 focus:border-[var(--accent)] outline-none transition"
+            />
+          </div>
+
+          {/* Mensagem */}
+          <div className="flex flex-col text-left">
+            <label className="text-white font-semibold mb-2">Descrição do Projeto</label>
+            <textarea
+              name="message"
+              rows="5"
+              placeholder="Descreva o tipo de projeto que tem em mente..."
+              required
+              className="px-4 py-3 rounded-xl bg-white/20 text-white placeholder-white/60 border border-white/30 focus:border-[var(--accent)] outline-none transition resize-none"
+            ></textarea>
+          </div>
+
+          {/* Botão Enviar */}
+          <button
+            type="submit"
+            className="
+              w-full py-4 bg-[var(--accent)] text-[var(--surface)] font-bold rounded-full text-lg 
+              shadow-xl hover:scale-[1.02] active:scale-95 transition-all
+            "
+          >
+            Enviar pelo WhatsApp
+          </button>
         </motion.form>
       </div>
     </section>

@@ -1,60 +1,49 @@
 @import "tailwindcss";
 
-
-/* ------------------------------ */
-/* VARIÁVEIS DE TEMA */
-/* ------------------------------ */
+/* ------------------------------
+   VARIÁVEIS DE TEMA
+------------------------------ */
 
 :root {
-  --blue: #0f2c5f;
-  --red: rgb(248, 21, 21); 
-  --escuro:	#4682B4;
-  --claro: 	#87CEEB; 
-   --yellow: yellow; 
-  --white: white; 
- 
- 
+  /* Paleta rosa / ameixa */
+  --surface: #1f0f1d;
+  --surface-container-lowest: #160a15;
+  --surface-container: #2b1628;
+  --surface-container-high: #3a1f36;
+  --on-surface: #f7e6f0;
+  --on-tertiary-fixed-variant: #7a2e5c;
+  --primary-container: #c084fc;
+  --accent: #f472b6;
+  --white: #ffffff;
 }
+
+/* ------------------------------
+   BASE
+------------------------------ */
 
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  font-family: "Montserrat", system-ui, sans-serif;
+  font-family: "Montserrat", sans-serif;
+  background-color: var(--surface);
+  color: var(--on-surface);
 }
 
-section[id] {
-  scroll-margin-top: 5rem;
+h1 {
+  font-weight: 600;
+  letter-spacing: -0.02em;
 }
 
-::selection {
-  background: var(--escuro);
-  color: white;
+p {
+  text-align: justify;
 }
 
-/* Respeita quem prefere menos animação */
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
+/* ------------------------------
+   ANIMAÇÕES
+------------------------------ */
 
-/* Dark mode */
-.dark {
-  --surface: #0d0f0c;
-  --primary: #bec6fb;
-  --on-primary: #1a1a1a;
-}
-
-/* ------------------------------ */
-/* ANIMAÇÕES */
-/* ------------------------------ */
-
-/* Slide do menu mobile */
 @keyframes slideLeft {
   from { transform: translateX(100%) }
   to { transform: translateX(0) }
@@ -63,66 +52,3 @@ section[id] {
 .animate-slideLeft {
   animation: slideLeft 0.35s ease-out forwards;
 }
-
-/* Fade in suave */
-@keyframes fadeIn {
-  from { opacity: 0 }
-  to { opacity: 1 }
-}
-
-.animate-fadeIn {
-  animation: fadeIn 1.2s ease-out forwards;
-}
-
-/* Slide up suave */
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(30px) }
-  to { opacity: 1; transform: translateY(0) }
-}
-
-.animate-slideUp {
-  animation: slideUp 1.2s ease-out forwards;
-}
-
-/* Flutuação suave (imagem do hero) */
-@keyframes float {
-  0% { transform: translateY(0) }
-  50% { transform: translateY(-10px) }
-  100% { transform: translateY(0) }
-}
-
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
-/* FadeUp para cards de projetos */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px) }
-  to { opacity: 1; transform: translateY(0) }
-}
-
-.animate-fadeUp {
-  animation: fadeUp 0.8s ease-out forwards;
-}
-
-
-#sobre {
-  border-radius: 1%;
-}
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background-image: url('/fundo.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  /* AQUI ESTÁ A OPACIDADE */
-  background-color: rgba(0, 0, 0, 0.1); 
-  background-blend-mode: darken;
-
-  z-index: -1;
-  pointer-events: none;
-}
-

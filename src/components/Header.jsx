@@ -1,170 +1,87 @@
 import { useState, useRef, useEffect } from "react";
 import { HashLink } from "react-router-hash-link";
-import { motion, useScroll, useSpring } from "framer-motion";
 
-const navItems = [
-  { label: "Sobre", to: "/#sobre" },
-  { label: "Serviços", to: "/#servicos" },
-  { label: "Processo", to: "/#processo" },
-  { label: "Portfólio", to: "/#portfolio" },
-  { label: "Contatos", to: "/#contatos" },
+const links = [
+  { to: "/#sobre", label: "Sobre mim" },
+  { to: "/#projetos", label: "Projetos" },
+  { to: "/#contactos", label: "Contactos" },
 ];
 
 export default function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const [ativo, setAtivo] = useState("");
+  const [open, setOpen] = useState(false);
   const menuRef = useRef(null);
 
-  // Barra de progresso de leitura
-  const { scrollYProgress } = useScroll();
-  const progresso = useSpring(scrollYProgress, { stiffness: 120, damping: 30 });
-
+  // Fecha o menu ao clicar fora
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-
-    // Destaca no menu a secção visível
-    const observer = new IntersectionObserver(
-      (entries) => entries.forEach((e) => e.isIntersecting && setAtivo(`/#${e.target.id}`)),
-      { rootMargin: "-45% 0px -50% 0px" }
-    );
-    navItems.forEach(({ to }) => {
-      const el = document.getElementById(to.slice(2));
-      if (el) observer.observe(el);
-    });
-
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      observer.disconnect();
-    };
-  }, []);
-
-  useEffect(() => {
-    if (!isMenuOpen) return;
-
     function handleClickOutside(e) {
       if (menuRef.current && !menuRef.current.contains(e.target)) {
-        setIsMenuOpen(false);
+        setOpen(false);
       }
     }
 
-    function handleKeyDown(e) {
-      if (e.key === "Escape") {
-        setIsMenuOpen(false);
-      }
+    if (open) {
+      document.addEventListener("mousedown", handleClickOutside);
     }
 
-    document.addEventListener("mousedown", handleClickOutside);
-    document.addEventListener("keydown", handleKeyDown);
-    document.body.style.overflow = "hidden";
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-      document.removeEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = "";
-    };
-  }, [isMenuOpen]);
-
-  const toggleMenu = () => setIsMenuOpen((prev) => !prev);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [open]);
 
   return (
-    <header className={`
-      flex items-center justify-between 
-      px-3 sticky top-0 z-50 w-full 
-      transition-all duration-300
-      ${scrolled ? "h-14 bg-white/90 backdrop-blur-md shadow-lg" : "h-15 bg-white shadow-md"}
-    `}>
-      <motion.div
-        style={{ scaleX: progresso }}
-        className="absolute bottom-0 left-0 right-0 h-0.5 origin-left bg-gradient-to-r from-[var(--blue)] via-[var(--escuro)] to-[var(--red)]"
-      />
-      <div className="flex justify-between items-center w-full px-6 py-4 max-w-5xl mx-auto">
-        <a href="/" className="flex items-center gap-3" aria-label="Voltar para a página inicial">
-          <img 
-            src="/logo.webp"
-            alt="Logo"
-            className="w-25 h-25 object-contain"
-          />
-        </a>
+    <header className="sticky top-0 z-50 h-20 w-full bg-[var(--surface)]/70 backdrop-blur-xl border-b border-white/10">
+      <div className="flex justify-between items-center h-full px-6 max-w-7xl mx-auto">
+        {/* LOGO */}
+        <HashLink smooth to="/#inicio" className="text-xl font-extrabold tracking-tight text-white">
+          Márcia <span className="text-[var(--accent)]">D</span> Costa
+        </HashLink>
 
+        {/* ÍCONE HAMBÚRGUER */}
         <button
-          type="button"
-          aria-label={isMenuOpen ? "Fechar menu" : "Abrir menu"}
-          aria-expanded={isMenuOpen}
-          aria-controls="mobile-menu"
           className="md:hidden flex flex-col gap-1.5 ml-2"
-          onClick={toggleMenu}
+          onClick={() => setOpen(true)}
+          aria-label="Abrir menu"
         >
-          <span className="w-4 h-0.3 bg-[var(--blue)] rounded"></span>
-          <span className="w-4 h-0.3 bg-[var(--blue)] rounded"></span>
-          <span className="w-4 h-0.3 bg-[var(--blue)] rounded"></span>
+          <span className="w-7 h-0.5 bg-[var(--accent)] rounded"></span>
+          <span className="w-7 h-0.5 bg-[var(--accent)] rounded"></span>
+          <span className="w-7 h-0.5 bg-[var(--accent)] rounded"></span>
         </button>
 
-        <nav className="hidden md:flex items-center gap-6" aria-label="Navegação principal">
-          {navItems.map(({ label, to }) => (
-            <HashLink
-              key={to}
-              smooth
-              to={to}
-              aria-current={ativo === to ? "true" : undefined}
-              className={`relative py-1 font-medium transition hover:text-[var(--red)] ${
-                ativo === to ? "text-[var(--red)]" : "text-[var(--blue)]"
-              }`}
-            >
-              {label}
-              {ativo === to && (
-                <motion.span
-                  layoutId="nav-ativo"
-                  className="absolute -bottom-0.5 left-0 right-0 h-0.5 rounded-full bg-[var(--red)]"
-                />
-              )}
+        {/* NAV DESKTOP */}
+        <nav className="hidden md:flex items-center gap-8">
+          {links.map((link) => (
+            <HashLink key={link.to} smooth to={link.to} className="text-white/85 hover:text-[var(--accent)] transition">
+              {link.label}
             </HashLink>
           ))}
-          <HashLink
-            smooth
-            to="/#contatos"
-            className="ml-2 px-4 py-1.5 rounded-full bg-[var(--blue)] text-white text-sm font-semibold hover:bg-[var(--red)] transition-colors"
-          >
-            Orçamento
-          </HashLink>
         </nav>
       </div>
 
-      {isMenuOpen && (
-        <div
-          className="fixed inset-0 bg-black/60 backdrop-blur-xl z-50 flex justify-end"
-          onClick={() => setIsMenuOpen(false)}
-        >
+      {/* MENU MOBILE */}
+      {open && (
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-xl z-50 flex justify-end">
           <div
-            id="mobile-menu"
             ref={menuRef}
-            className="
-              w-34 h-full bg-white/95 backdrop-blur-xl shadow-xl 
-              p-3 flex flex-col gap-8 animate-slideLeft
-            "
-            onClick={(e) => e.stopPropagation()}
+            className="w-72 h-full bg-[var(--surface-container)] shadow-xl p-8 flex flex-col gap-8 animate-slideLeft"
           >
+            {/* BOTÃO FECHAR */}
             <button
-              type="button"
+              className="self-end text-3xl text-white hover:text-[var(--accent)] transition"
+              onClick={() => setOpen(false)}
               aria-label="Fechar menu"
-              className="self-end text-3xl text-[var(--blue)] hover:text-[var(--red)] transition"
-              onClick={() => setIsMenuOpen(false)}
             >
               ×
             </button>
 
-            <nav className="flex flex-col gap-6 text-lg font-semibold" aria-label="Menu mobile">
-              {navItems.map(({ label, to }) => (
+            {/* NAV MOBILE */}
+            <nav className="flex flex-col gap-6 text-lg font-semibold">
+              {links.map((link) => (
                 <HashLink
-                  key={to}
+                  key={link.to}
                   smooth
-                  to={to}
-                  onClick={() => setIsMenuOpen(false)}
-                  className="text-[var(--blue)] hover:text-[var(--red)] transition"
+                  to={link.to}
+                  onClick={() => setOpen(false)}
+                  className="text-white hover:text-[var(--accent)] transition"
                 >
-                  {label}
+                  {link.label}
                 </HashLink>
               ))}
             </nav>
